@@ -31,7 +31,7 @@ return check;
 
 const getBackButton = document.getElementById("get-back-button");
 getBackButton.onclick = () => { 
-    window.location.href = hoa_universal_link; 
+    document.location.href = hoa_universal_link; 
 };
 
 function overrideConsoleLog() {
