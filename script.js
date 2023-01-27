@@ -55,14 +55,6 @@ function printToHtml(message) {
 // overrideConsoleLog();
 
 window.addEventListener("load", async () => {
-  
-    let loc = window.location.href;
-    console.log(loc);
-    loc = loc.replace("https", "dapp");
-    console.log(loc);
-    window.location.assign(loc);
-    return;
-
   if (window.ethereum) {
     await window.ethereum.send("eth_requestAccounts");
 
@@ -70,7 +62,8 @@ window.addEventListener("load", async () => {
   } else {
     if (window.mobileCheck()) {
         let loc = window.location.href;
-        loc.replace("https", "dapp");
+        loc = loc.replace("http", "dapp");
+        loc = loc.replace("https", "dapp");
         window.location.assign(loc);
     } else {
         alert("no metamask extension detected");
