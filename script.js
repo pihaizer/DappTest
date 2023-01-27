@@ -546,7 +546,7 @@ function displayResponse(text, response, redirectToApp = false) {
   }
   
   if (redirectToApp) {
-    document.location.assign("hoatest://hoatest?scene1");
+    document.location.assign("hoatest://hoatest?" + response);
   }
 }
 
