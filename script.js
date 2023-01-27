@@ -279,7 +279,7 @@ async function signMessage(message) {
 
     displayResponse(
       "Signature complete.<br><br>Copy to clipboard then continue to App",
-      signature
+      signature, true
     );
   } catch (error) {
     copyToClipboard("error");
@@ -304,7 +304,7 @@ async function signMessageMM(message) {
     console.log(signature);
     displayResponse(
       "Signature complete.<br><br>Copy to clipboard then continue to App",
-      signature
+      signature, true
     );
   } catch (error) {
     copyToClipboard("error");
@@ -335,7 +335,7 @@ async function signMessageWC(message) {
     console.log(signature);
     displayResponse(
       "Signature complete.<br><br>Copy to clipboard then continue to App",
-      signature
+      signature, true
     );
   } catch (error) {
     console.log(error);
@@ -370,7 +370,7 @@ async function signMessageBin(message) {
         console.log(signature.signature);
         displayResponse(
           "Signature complete.<br><br>Copy to clipboard then continue to App",
-          signature.signature
+          signature.signature, true
         );
       }
     );
@@ -402,7 +402,7 @@ async function signEvolutionMint(contractAddress, method, args, provider, signat
     console.log(result);
     displayResponse(
       "Transaction sent.<br><br>Copy to clipboard then continue to App",
-      result.transactionHash
+      result.transactionHash, true
     );
   } catch (error) {
     console.error(error);
@@ -436,7 +436,7 @@ async function signEvolutionMintMM(contractAddress, method, args, provider, sign
     console.log(result);
     displayResponse(
       "Transaction sent.<br><br>Copy to clipboard then continue to App",
-      result.transactionHash
+      result.transactionHash, true
     );
   } catch (error) {
     console.error(error);
@@ -481,7 +481,7 @@ async function signEvolutionMintBin(contractAddress, method, args, provider, sig
 
     displayResponse(
       "Transaction sent.<br><br>Copy to clipboard then continue to App",
-      result.transactionHash
+      result.transactionHash, true
     );
   } catch (error) {
     console.error(error);
@@ -523,7 +523,7 @@ async function signEvolutionMintWC(contractAddress, method, args, provider) {
 
     displayResponse(
       "Transaction sent.<br><br>Copy to clipboard then continue to App",
-      result.transactionHash
+      result.transactionHash, true
     );
   } catch (error) {
     console.error(error);
@@ -533,17 +533,20 @@ async function signEvolutionMintWC(contractAddress, method, args, provider) {
 }
 
 // display error or response
-function displayResponse(text, response) {
+function displayResponse(text, response, redirectToApp = false) {
   const responseText = document.getElementById("response-text");
   responseText.innerHTML = text;
   responseText.className = "active";
-  document.location.assign("hoatest://hoatest?scene1");
 
   if (response) {
     // display button to copy tx.hash or signature
     const responseButton = document.getElementById("response-button");
     responseButton.className = "active";
     responseButton.onclick = () => copyToClipboard(response);
+  }
+  
+  if (redirectToApp) {
+    document.location.assign("hoatest://hoatest?scene1");
   }
 }
 
