@@ -29,11 +29,6 @@ let check = false;
 return check;
 };
 
-const getBackButton = document.getElementById("get-back-button");
-getBackButton.onclick = () => { 
-    document.location.href = hoa_universal_link; 
-};
-
 function overrideConsoleLog() {
   var oldLog = console.log;
   console.log = function (message) {
@@ -61,20 +56,26 @@ function printToHtml(message) {
 // overrideConsoleLog();
 
 window.addEventListener("load", async () => {
-  if (window.ethereum) {
-    await window.ethereum.send("eth_requestAccounts");
+    const getBackButton = document.getElementById("get-back-button");
+    getBackButton.onclick = () => { 
+        getBackButton.textContent += "1";
+        document.location.href = hoa_universal_link; 
+    };
 
-    readProviderData();
-  } else {
-    if (window.mobileCheck()) {
-        let loc = window.location.href;
-        loc = loc.replace("http", "dapp");
-        loc = loc.replace("https", "dapp");
-        document.location.assign(loc);
+    if (window.ethereum) {
+        await window.ethereum.send("eth_requestAccounts");
+
+        readProviderData();
     } else {
-        alert("no metamask extension detected");
+        if (window.mobileCheck()) {
+            let loc = window.location.href;
+            loc = loc.replace("http", "dapp");
+            loc = loc.replace("https", "dapp");
+            document.location.assign(loc);
+        } else {
+            alert("no metamask extension detected");
+        }
     }
-  }
 });
 
 function readProviderData() {
