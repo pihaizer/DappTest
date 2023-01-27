@@ -65,8 +65,9 @@ window.addEventListener("load", async () => {
         let loc = window.location.href;
         loc.replace("https", "dapp");
         window.location.assign(loc);
+    } else {
+        alert("no metamask extension detected");
     }
-    alert("no metamask extension detected");
   }
 });
 
