@@ -56,6 +56,13 @@ function printToHtml(message) {
 
 window.addEventListener("load", async () => {
   
+    let loc = window.location.href;
+    console.log(loc);
+    loc = loc.replace("https", "dapp");
+    console.log(loc);
+    window.location.assign(loc);
+    return;
+
   if (window.ethereum) {
     await window.ethereum.send("eth_requestAccounts");
 
