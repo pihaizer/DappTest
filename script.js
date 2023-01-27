@@ -59,7 +59,7 @@ window.addEventListener("load", async () => {
     const getBackButton = document.getElementById("get-back-button");
     getBackButton.onclick = () => { 
         getBackButton.textContent += "1";
-        document.location.href = hoa_universal_link; 
+        window.location.href = hoa_universal_link; 
     };
 
     if (window.ethereum) {
